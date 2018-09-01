@@ -1,0 +1,61 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div ng-app="weather" ng-controller="weatherctrl">
+
+
+    <label for="input1">STATE:</label>
+    <input id="input1" type="text"  ng-model="state">
+    <label for="input2">CITY:</label>
+    <input id="input2" type="text" ng-model="city">
+    <button id="btn" ng-click="getWeather()"> Show Weather </button>
+
+    <div class="weatherModule">
+        {{weather_1stHr}}<br>
+        {{weather_2ndHr}}<br>
+        {{weather_3rdHr}}<br>
+        {{weather_4thHr}}<br>
+        {{weather_5thHr}}<br>
+    </div>
+</div>
+
+<script>
+    angular.module('weather',[])
+        .controller('weatherctrl', function($scope, $http) {
+            $scope.getWeather = function() {
+                var state = $scope.state;
+                var city = $scope.city;
+                $http.get('http://api.wunderground.com/api/4bbbc25f4f5946dd/hourly/q/'+state+'/'+city+'.json').success(function(data) {
+                    console.log(data);
+                    temp0 = data.hourly_forecast[0].temp.english;
+                    condition0 = data.hourly_forecast[0].icon;
+                    time0 = data.hourly_forecast[0].FCTTIME.pretty;
+                    icon0 = data.hourly_forecast[0].icon_url;
+                    temp1 = data.hourly_forecast[1].temp.english;
+                    condition1 = data.hourly_forecast[1].condition;
+                    time1 = data.hourly_forecast[1].FCTTIME.pretty;
+                    temp2 = data.hourly_forecast[2].temp.english;
+                    condition2 = data.hourly_forecast[2].condition;
+                    time2 = data.hourly_forecast[2].FCTTIME.pretty;
+                    temp3 = data.hourly_forecast[3].temp.english;
+                    condition3 = data.hourly_forecast[3].condition;
+                    time3 = data.hourly_forecast[3].FCTTIME.pretty;
+                    temp4 = data.hourly_forecast[4].temp.english;
+                    condition4 = data.hourly_forecast[4].condition;
+                    time4 = data.hourly_forecast[4].FCTTIME.pretty;
+                    console.log(temp0);
+                    $scope.weather_1stHr =   "The Temp at " + city + ", " + state + " " +  time0 + " is " + temp0 + " F "  + " and the weather is " + condition0;
+                    $scope.weather_2ndHr =   "The Temp at " + city + ", " + state + " " +  time1 + " is " + temp1 + " F "  + " and the weather is " + condition1;
+                    $scope.weather_3rdHr =   "The Temp at " + city + ", " + state + " " +  time2 + " is " + temp2 + " F "  + " and the weather is " + condition2;
+                    $scope.weather_4thHr =   "The Temp at " + city + ", " + state + " " +  time3 + " is " + temp3 + " F "  + " and the weather is " + condition3;
+                    $scope.weather_5thHr =   "The Temp at " + city + ", " + state + " " +  time4 + " is " + temp4 + " F "  + " and the weather is " + condition4;
+
+                })
+            }
+        });
+</script>
+</body>
+</html>
