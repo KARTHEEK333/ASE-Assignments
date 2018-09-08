@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="nutritionix" ng-controller="nutritionixcontroller">
+<head>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script>
+        angular.module('nutritionix', [])
+            .controller('nutritionixcontroller', function($scope, $http) {
+                $("#textToSpeech").hide();
+                $scope.getDetails = function() {
+                    $http.get('https://api.nutritionix.com/v1_1/search/'+$scope.nutritionix+'?results=0:1&fields=*&appId=3cddcf9c&appKey=b4aef644c5b13118f5a4e972935f56bc').success(function(data)
+                    {
+                        console.log(data.hits);
+                        $scope.calories = "Calories : " + data.hits[0].fields.nf_calories ;
+                        $scope.servingweight = "serving weight in grams : " + data.hits[0].fields.nf_serving_weight_grams;
+                        var url = "https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?username=5ef4ee54-7d62-41a6-ba30-2e66a3d86bda&password=XNkJiexLblOQ&text="+$scope.nutritionix;
+                        $("#textToSpeech").attr('onclick',"location.href="+"'"+url+"'");
+                        $("#textToSpeech").show();
+                    })
+                }
+            });
+    </script>
+    <style>
+        body  {
+            background-image: url("https://previews.123rf.com/images/kurhan/kurhan1510/kurhan151001919/47330203-fruits-and-vegetables-over-green-background-healthy-diet-.jpg");
+            background-color: #cccccc;
+            baxkground-size: 100% 100%;
+        }
+
+
+    </style>
+</head>
+<body>
+<h1 align="center">Food Product Details</h1>
+<div align = "center">
+    <label>Enter the food product:</label>
+    <input type="text" ng-model="nutritionix">
+
+    <button  id="btn" ng-click="getDetails ()">GetDetails</button>
+    <div  class="nutrition" align="center">
+        <p class="Calories" ng-bind="calories"></p>
+        <p class="TotalWeight" ng-bind="servingweight"></p>
+    </div>
+    <input type="button" style="display: none" id="textToSpeech" value="Play"></input>
+
+</div>
+</body>
+</html>
