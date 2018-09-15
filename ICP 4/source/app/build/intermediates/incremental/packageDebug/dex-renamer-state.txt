@@ -1,0 +1,7 @@
+#Fri Sep 14 16:26:59 CDT 2018
+base.0=C\:\\Users\\karth\\Downloads\\TranslateApp\\TranslateApp\\TranslateApp\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_35c17af9362f9838529c30505dc58e20565b9602
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=C\:\\Users\\karth\\Downloads\\TranslateApp\\TranslateApp\\TranslateApp\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_0a2e20346afa7926e974fa4bfcb1222023c9146e\\classes.dex
+base.1=C\:\\Users\\karth\\Downloads\\TranslateApp\\TranslateApp\\TranslateApp\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_0a2e20346afa7926e974fa4bfcb1222023c9146e
+file.0=C\:\\Users\\karth\\Downloads\\TranslateApp\\TranslateApp\\TranslateApp\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_35c17af9362f9838529c30505dc58e20565b9602\\classes.dex
